@@ -7,6 +7,7 @@ enable_language(C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_C_COMPILER gcc)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
 
 find_package(OpenMP)
 
