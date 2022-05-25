@@ -6,7 +6,6 @@
 #define LOOP4 (LOOP2, LOOP2)
 
 uint64_t fib(uint32_t n) {
-    register uint64_t t = 0;
     register uint64_t a = 0;
     register uint64_t b = 1;
 
