@@ -7,6 +7,7 @@ cmake --build build/debug
 cmake --build build/release
 
 alg=( rec rec_cache tailrec iterative iterative_cache unroll )
+alg_wo_rec=( rec_cache tailrec iterative iterative_cache unroll )
 
 # Create objdump files
 echo "Creating objdump files"
@@ -31,8 +32,15 @@ fi
 
 # Create perf stat files
 echo "Creating perf stat files"
+n=30
 for f in "${alg[@]}"
 do
-    perf stat build/debug/fib_$f 30 > build/debug/fib_$f_30.stat
-    perf stat build/release/fib_$f 30 > build/release/fib_$f_30.stat
+    perf stat -o build/debug/fib_"$f"_"$n".stat build/debug/fib_$f $n
+    perf stat -o build/release/fib_"$f"_"$n".stat build/release/fib_$f $n
+done
+n=1000000
+for f in "${alg_wo_rec[@]}"
+do
+    perf stat -o build/debug/fib_"$f"_"$n".stat build/debug/fib_$f $n
+    perf stat -o build/release/fib_"$f"_"$n".stat build/release/fib_$f $n
 done
