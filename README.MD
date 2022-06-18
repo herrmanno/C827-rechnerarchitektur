@@ -21,4 +21,9 @@ Configure, Compile and create further artefacts
 bash build.sh
 ```
 
+Build on remote machine and download artifacts
+```
+bash build_remote.sh [ssh-connection-string]
+```
+
 Slides to the corresponding case study can be found at [slides](./slides)
