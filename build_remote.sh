@@ -15,7 +15,7 @@ else
     exit 1
 fi
 
-if [ -f ./build ]
+if [ -d ./build ]
 then
     echo "Back up ./build to ./build~"
     mv build build~
@@ -25,7 +25,12 @@ trap 'ssh -t "$remote" "rm -rf /tmp/$uuid"' EXIT
 
 echo "Building project at $remote:/tmp/$uuid"
 
-ssh -t "$remote" "pushd /tmp && git clone https://github.com/herrmanno/C827-rechnerarchitektur.git $uuid && pushd $uuid && bash build.sh && bash perf.sh"
+if [ -z "${NO_PERF}" ]
+then
+    ssh -t "$remote" "pushd /tmp && git clone https://github.com/herrmanno/C827-rechnerarchitektur.git $uuid && pushd $uuid && bash build.sh && bash perf.sh"
+else
+    ssh -t "$remote" "pushd /tmp && git clone https://github.com/herrmanno/C827-rechnerarchitektur.git $uuid && pushd $uuid && bash build.sh"
+fi
 
 echo "Build succeeded"
 echo "Downloading artefacts"

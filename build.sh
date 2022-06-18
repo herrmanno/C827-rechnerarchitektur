@@ -13,8 +13,8 @@ alg_wo_rec=( rec_cache tailrec iterative iterative_cache unroll )
 echo "Creating objdump files"
 for f in "${alg[@]}"
 do
-    objdump -d --source build/debug/CMakeFiles/libfib_$f.dir/fib_$f.c.o > build/debug/fib_$f.objdump
-    objdump -d --source build/release/CMakeFiles/libfib_$f.dir/fib_$f.c.o > build/release/fib_$f.objdump
+    objdump -d --source build/debug/CMakeFiles/libfib_$f.dir/src/fib_$f.c.o > build/debug/fib_$f.objdump
+    objdump -d --source build/release/CMakeFiles/libfib_$f.dir/src/fib_$f.c.o > build/release/fib_$f.objdump
 done
 
 # Create risc files and objdumps
