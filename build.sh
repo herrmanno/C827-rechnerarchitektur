@@ -29,18 +29,3 @@ if [ -f ~/risc-compiler/bin/riscv64-unknown-elf-gcc ]; then
         ~/risc-compiler/bin/riscv64-unknown-elf-objdump -d --source build/release/fib_$f.risc.o > build/release/fib_$f.risc.objdump
     done
 fi
-
-# Create perf stat files
-echo "Creating perf stat files"
-n=30
-for f in "${alg[@]}"
-do
-    perf stat -o build/debug/fib_"$f"_"$n".stat build/debug/fib_$f $n
-    perf stat -o build/release/fib_"$f"_"$n".stat build/release/fib_$f $n
-done
-n=1000000
-for f in "${alg_wo_rec[@]}"
-do
-    perf stat -o build/debug/fib_"$f"_"$n".stat build/debug/fib_$f $n
-    perf stat -o build/release/fib_"$f"_"$n".stat build/release/fib_$f $n
-done
