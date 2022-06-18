@@ -35,7 +35,7 @@ fi
 echo "Build succeeded"
 echo "Downloading artefacts"
 
-scp -r "$remote:/tmp/$uuid/build/*" "./build/"
+scp -r "$remote:/tmp/$uuid/build" "./build"
 
 echo "Downloading artefacts succeeded"
 
