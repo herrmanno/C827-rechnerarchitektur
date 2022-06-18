@@ -11,6 +11,8 @@ uint64_t fib(uint32_t size) {
     for (uint32_t i = 3; i <= size; i++) {
         table[i - 1] = table[i - 3] + table[i - 2];
     }
-    return table[size - 1];
+    uint64_t result = table[size - 1];
+    free(table);
+    return result;
 }
 
