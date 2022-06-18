@@ -9,7 +9,7 @@ int main(int argc, char** argv) {
     for (uint32_t i = 1; i < argc; i++) {
         long n = strtoll(argv[i], 0, 10);
         if (errno != ERANGE && n != 0) {
-            printf("%u: %lu\n", ((uint32_t) n), fib((uint32_t) n));
+            printf("%u: %llu\n", ((uint32_t) n), fib((uint32_t) n));
         } else {
             printf("Bad argument: %s", argv[i]);
         }
