@@ -23,7 +23,7 @@ fi
 
 echo "Building project at $remote:/tmp/$uuid"
 
-ssh -t "$remote" "pushd /tmp && git clone https://github.com/herrmanno/C827-rechnerarchitektur.git $uuid && pushd $uuid && bash build.sh"
+ssh -t "$remote" "pushd /tmp && git clone https://github.com/herrmanno/C827-rechnerarchitektur.git $uuid && pushd $uuid && bash build.sh && bash perf.sh"
 
 echo "Build succeeded"
 echo "Downloading artefacts"
