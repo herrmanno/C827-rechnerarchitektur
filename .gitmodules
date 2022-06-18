@@ -1,0 +1,4 @@
+[submodule "slides"]
+	path = slides
+    branch = master
+	url = git@github.com:herrmanno/RA-Presentation.git
