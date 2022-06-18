@@ -7,9 +7,12 @@ enable_language(C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_C_COMPILER gcc)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
 
 find_package(OpenMP)
+
+IF(OpenMP_C__FOUND)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp")
+ENDIF()
 
 add_executable(fib_rec driver.c fib_rec.c)
 target_compile_options(fib_rec PRIVATE -Wall $<$<CONFIG:Debug>: -g > $<$<CONFIG:Release>: -O3>)
@@ -27,9 +30,9 @@ target_compile_options(fib_unroll PRIVATE -Wall $<$<CONFIG:Debug>: -g > $<$<CONF
 add_executable(fib_integer driver_integer.c integer.c fib_integer.c)
 target_compile_options(fib_integer PRIVATE -Wall $<$<CONFIG:Debug>: -g > $<$<CONFIG:Release>: -O3>)
 
-add_executable(fibparallel driver_multiple.c fib_unroll.c)
-target_compile_options(fibparallel PRIVATE -Wall $<$<CONFIG:Debug>: -g > $<$<CONFIG:Release>: -O3>)
 if(OpenMP_C_CFOUND)
+    add_executable(fibparallel driver_multiple.c fib_unroll.c)
+    target_compile_options(fibparallel PRIVATE -Wall $<$<CONFIG:Debug>: -g > $<$<CONFIG:Release>: -O3>)
     target_link_libraries(fibparallel PUBLIC OpenMP::OpenMP_C)
 endif()
 
