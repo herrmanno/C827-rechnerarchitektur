@@ -21,6 +21,8 @@ then
     mv build build~
 fi
 
+trap 'ssh -t "$remote" "rm -rf /tmp/$uuid"' EXIT
+
 echo "Building project at $remote:/tmp/$uuid"
 
 ssh -t "$remote" "pushd /tmp && git clone https://github.com/herrmanno/C827-rechnerarchitektur.git $uuid && pushd $uuid && bash build.sh && bash perf.sh"
@@ -37,3 +39,5 @@ echo "Removing remote directory"
 ssh -t "$remote" "rm -rf /tmp/$uuid"
 
 echo "Remote directory removed"
+
+exit 0

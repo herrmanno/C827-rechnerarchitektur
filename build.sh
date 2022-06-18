@@ -22,8 +22,8 @@ if [ -f ~/risc-compiler/bin/riscv64-unknown-elf-gcc ]; then
     echo "Compiling for RISC"
     for f in "${alg[@]}"
     do
-        ~/risc-compiler/bin/riscv64-unknown-elf-gcc -O0 -g -c fib_$f.c -o build/debug/fib_$f.risc.o
-        ~/risc-compiler/bin/riscv64-unknown-elf-gcc -O3 -g -c fib_$f.c -o build/release/fib_$f.risc.o
+        ~/risc-compiler/bin/riscv64-unknown-elf-gcc -O0 -g -c src/fib_$f.c -o build/debug/fib_$f.risc.o
+        ~/risc-compiler/bin/riscv64-unknown-elf-gcc -O3 -g -c src/fib_$f.c -o build/release/fib_$f.risc.o
 
         ~/risc-compiler/bin/riscv64-unknown-elf-objdump -d --source build/debug/fib_$f.risc.o > build/debug/fib_$f.risc.objdump
         ~/risc-compiler/bin/riscv64-unknown-elf-objdump -d --source build/release/fib_$f.risc.o > build/release/fib_$f.risc.objdump
